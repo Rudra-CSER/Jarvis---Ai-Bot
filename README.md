@@ -1,97 +1,277 @@
-# JARVIS
+# 🚀 Jarvis Bot - MERN Stack Voice Assistant
 
-<p align="center">
-  <img src="media/cqb_conv.png" alt="JARVIS helping me choose a firearm" width="100%"/>
-</p>
+A modern voice-activated AI assistant built with React, Express, and cutting-edge AI services. Speak to Jarvis and get intelligent responses with natural voice synthesis.
 
-Your own voice personal assistant: Voice to Text to LLM to Speech, displayed in a web interface.
+## 🎯 Features
 
-## How it works
+- **🎤 Voice Recording**: Browser-based audio recording with real-time status indicators
+- **🧠 AI Processing**: OpenAI GPT-3.5 for intelligent, contextual responses
+- **📝 Speech-to-Text**: Deepgram for accurate audio transcription
+- **🔊 Text-to-Speech**: ElevenLabs for natural voice synthesis
+- **💬 Real-time Chat**: Live conversation display with automatic updates
+- **🎨 Modern UI**: Beautiful React interface with dark theme and responsive design
+- **🔄 Live Updates**: Conversation updates every 500ms for real-time experience
 
-1. :microphone: The user speaks into the microphone
-2. :keyboard: Voice is converted to text using <a href="https://deepgram.com/" target="_blank">Deepgram</a>
-3. :robot: Text is sent to <a href="https://openai.com/" target="_blank">OpenAI</a>'s GPT-3 API to generate a response
-4. :loudspeaker: Response is converted to speech using <a href="https://elevenlabs.io/" target="_blank">ElevenLabs</a>
-5. :loud_sound: Speech is played using <a href="https://www.pygame.org/wiki/GettingStarted" target="_blank">Pygame</a>
-6. :computer: Conversation is displayed in a webpage using <a href="https://github.com/Avaiga/taipy" target="_blank">Taipy</a>
+## 📋 Prerequisites
 
-## Video Demo
+Before running this project, ensure you have:
 
-<p align="center">
-  <a href="https://youtu.be/aIg4-eL9ATc" target="_blank">
-    <img src="media/git_thumb.png" alt="Youtube Devlog" width="50%"/>
-  </a>
-</p>
+1. **Node.js** (v16 or higher) - [Download here](https://nodejs.org/)
+2. **npm** (comes with Node.js)
+3. **API Keys** for the following services:
+   - OpenAI API key
+   - Deepgram API key
+   - ElevenLabs API key
 
-## Requirements
+## 🔑 Getting API Keys
 
-**Python 3.8 - 3.11**
+### OpenAI API Key
+1. Go to [OpenAI Platform](https://platform.openai.com/)
+2. Sign up/Login to your account
+3. Navigate to API Keys section
+4. Create a new API key
+5. Copy the key for your `.env` file
 
-Make sure you have the following API keys:
-- <a href="https://developers.deepgram.com/docs/authenticating" target="_blank">Deepgram</a>
-- <a href="https://platform.openai.com/account/api-keys" target="_blank">OpenAI</a>
-- <a href="https://elevenlabs.io/docs/api-reference/text-to-speech" target="_blank">Elevenlabs</a>
+### Deepgram API Key
+1. Go to [Deepgram Console](https://console.deepgram.com/)
+2. Sign up/Login to your account
+3. Create a new project
+4. Generate an API key from the project dashboard
+5. Copy the key for your `.env` file
 
-## How to install
+### ElevenLabs API Key
+1. Go to [ElevenLabs](https://elevenlabs.io/)
+2. Sign up/Login to your account
+3. Navigate to Profile Settings
+4. Go to API Keys section
+5. Copy your API key for your `.env` file
 
-1. Clone the repository
+## ⚙️ Local Setup Instructions
+
+### 1. Clone/Navigate to Project Directory
+```bash
+cd "C:\Users\rudra\Desktop\Jarvis Bot\JARVIS"
+```
+
+### 2. Install Dependencies
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+Create a `.env` file in the JARVIS directory:
+
+```env
+# API Keys for Jarvis Bot MERN Stack
+OPENAI_API_KEY=your_openai_api_key_here
+DEEPGRAM_API_KEY=your_deepgram_api_key_here
+ELEVENLABS_API_KEY=your_elevenlabs_api_key_here
+
+# Server Configuration (optional)
+PORT=3001
+NODE_ENV=development
+```
+
+**Important**: Replace the placeholder values with your actual API keys.
+
+### 4. Start the Application
+Run the development server:
+```bash
+npm run dev
+```
+
+This command will start both servers simultaneously:
+- **Backend server** on http://localhost:3001
+- **React frontend** on http://localhost:3000
+
+### 5. Access Your Application
+Open your browser and navigate to:
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:3001
+
+## 🎤 How to Use
+
+1. **Open the application** in your browser (http://localhost:3000)
+2. **Allow microphone access** when prompted by your browser
+3. **Click "Start Recording"** and speak your message clearly
+4. **Click "Stop Recording"** when you're finished speaking
+5. **Wait for processing** - Jarvis will:
+   - Transcribe your speech using Deepgram
+   - Generate an intelligent response using OpenAI GPT-3.5
+   - Convert the response to speech using ElevenLabs
+   - Play the audio response automatically
+   - Display the conversation in real-time
+
+## 🔧 Available Scripts
 
 ```bash
-git clone https://github.com/AlexandreSajus/JARVIS.git
+# Start both frontend and backend servers
+npm run dev
+
+# Start only the backend server
+npm run server
+
+# Start only the React frontend
+npm start
+
+# Build the React app for production
+npm run build
+
+# Run tests
+npm test
 ```
 
-2. Install the requirements
+## 🌐 API Endpoints
 
+### Backend Endpoints (Port 3001)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/process-audio` | Process voice recording and return AI response |
+| `GET` | `/conv.txt` | Get conversation history |
+| `GET` | `/status.txt` | Get current system status |
+| `POST` | `/clear-conversation` | Clear conversation history |
+| `POST` | `/toggle-listening` | Update listening status |
+| `GET` | `/audio/:filename` | Serve audio files |
+
+### Frontend Routes (Port 3000)
+- `/` - Main application interface
+
+## 📁 Project Structure
+
+```
+JARVIS/
+├── src/
+│   ├── App.js          # Main React component with voice controls
+│   ├── App.css         # Application styles and theme
+│   ├── index.js        # React application entry point
+│   └── index.css       # Global styles
+├── public/
+│   └── index.html      # HTML template
+├── audio/              # Audio files storage directory
+│   ├── recording.wav   # User voice recordings
+│   └── response.wav    # AI response audio
+├── server.js           # Express backend server
+├── package.json        # Dependencies and scripts
+├── .env               # Environment variables (create this)
+├── conv.txt           # Conversation history
+├── status.txt         # Current system status
+├── start.bat          # Windows batch file for easy startup
+└── README.md          # This file
+```
+
+## 🔄 How It Works
+
+### Voice Processing Pipeline
+1. **Audio Recording**: Browser captures microphone input using MediaRecorder API
+2. **Speech-to-Text**: Audio is sent to Deepgram for accurate transcription
+3. **AI Processing**: Transcription is processed by OpenAI GPT-3.5 for intelligent responses
+4. **Text-to-Speech**: AI response is converted to speech using ElevenLabs
+5. **Audio Playback**: Generated speech is played through the browser
+6. **Real-time Updates**: Conversation is displayed and updated every 500ms
+
+### Technology Stack
+- **Frontend**: React 18.2.0 with modern hooks
+- **Backend**: Express.js with CORS and file upload handling
+- **AI Services**: OpenAI GPT-3.5, Deepgram Nova-2, ElevenLabs
+- **Audio Processing**: MediaRecorder API, FormData for file uploads
+- **Development**: Concurrently for running multiple servers
+
+## 🚨 Troubleshooting
+
+### Common Issues
+
+#### 1. Microphone Permission Denied
+- **Solution**: Check browser permissions for microphone access
+- **Note**: Application requires HTTPS or localhost for microphone access
+
+#### 2. API Key Errors
+- **Solution**: Verify all API keys are correct in your `.env` file
+- **Check**: Ensure API keys have proper permissions and quotas
+- **Test**: Try API calls individually to isolate issues
+
+#### 3. Audio Not Playing
+- **Solution**: Check browser audio settings and volume
+- **Check**: Ensure audio files are being generated in the `audio/` directory
+- **Test**: Try playing audio files directly from the file system
+
+#### 4. Port Already in Use
 ```bash
-pip install -r requirements.txt
+# Kill existing Node.js processes (Windows)
+taskkill /F /IM node.exe
+
+# Then restart the application
+npm run dev
 ```
 
-3. Create a `.env` file in the root directory and add the following variables:
-
+#### 5. Dependencies Installation Issues
 ```bash
-DEEPGRAM_API_KEY=XXX...XXX
-OPENAI_API_KEY=sk-XXX...XXX
-ELEVENLABS_API_KEY=XXX...XXX
+# Clear npm cache and reinstall
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install
 ```
 
-## How to use
+#### 6. Environment Variables Not Loading
+- **Check**: Ensure `.env` file is in the JARVIS directory (same level as package.json)
+- **Verify**: File format is correct (no spaces around = sign)
+- **Restart**: Restart the development server after creating/modifying `.env`
 
-1. Run `display.py` to start the web interface
+### Browser Compatibility
+- ✅ **Chrome** (recommended) - Full support
+- ✅ **Firefox** - Full support
+- ✅ **Edge** - Full support
+- ⚠️ **Safari** - Limited support (some audio features may not work)
 
-```bash
-python display.py
-```
+## 🚀 Development Workflow
 
-2. In another terminal, run `jarvis.py` to start the voice assistant
+### Backend Development
+1. Modify `server.js` for API changes
+2. Add new endpoints as needed
+3. Test with Postman, curl, or browser developer tools
+4. Restart server to apply changes
 
-```bash
-python main.py
-```
+### Frontend Development
+1. Modify `src/App.js` for UI changes
+2. Update `src/App.css` for styling
+3. Changes are automatically reflected with hot reload
+4. Test voice functionality in browser
 
-- Once ready, both the web interface and the terminal will show `Listening...`
-- You can now speak into the microphone
-- Once you stop speaking, it will show `Stopped listening`
-- It will then start processing your request
-- Once the response is ready, it will show `Speaking...`
-- The response will be played and displayed in the web interface.
+### Testing Checklist
+- [ ] Voice recording starts and stops correctly
+- [ ] Audio transcription is accurate
+- [ ] AI responses are relevant and contextual
+- [ ] Audio playback works properly
+- [ ] Conversation history updates in real-time
+- [ ] Clear conversation functionality works
 
-Here is an example:
+## 🔒 Security Notes
 
-```
-Listening...
-Done listening
-Finished transcribing in 1.21 seconds.
-Finished generating response in 0.72 seconds.
-Finished generating audio in 1.85 seconds.
-Speaking...
+- **Never commit** the `.env` file to version control
+- **Keep API keys secure** and private
+- **Use environment variables** for all sensitive configuration
+- **Regularly rotate** API keys for security
 
- --- USER: good morning jarvis
- --- JARVIS: Good morning, Alex! How can I assist you today?
+## 📞 Support
 
-Listening...
-...
-```
+If you encounter issues not covered in this guide:
 
-<p align="center">
-  <img src="media/good_morning.png" alt="Saying good morning" width="80%"/>
-</p>
+1. **Check the console** for error messages in both browser and terminal
+2. **Verify API keys** and their permissions
+3. **Test each component** individually (recording, transcription, AI, TTS)
+4. **Check browser compatibility** and permissions
+5. **Review the troubleshooting section** above
+
+## 🎉 Getting Started
+
+Once everything is set up:
+
+1. Run `npm run dev`
+2. Open http://localhost:3000
+3. Allow microphone access
+4. Click "Start Recording" and say "Hello Jarvis!"
+5. Enjoy your AI voice assistant!
+
+---
+
+**Built with ❤️ using React, Express, OpenAI, Deepgram, and ElevenLabs**
